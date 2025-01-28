@@ -6,23 +6,51 @@
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<div class="hero">
-			<div class="container">
-				<div class="hero-content">
-					<h1>Your Hero Title</h1>
-					<p>Your compelling subtitle goes here.</p>
-					<a href="#" class="cta-button">Call to Action</a>
-				</div>
-				<div class="video-container">
-					<div class="video-wrapper">
-						<iframe
-							src="https://www.youtube.com/embed/VIDEO_ID"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen
-						></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
+		<hero-section></hero-section>
+
+		<script>
+			class HeroSection extends HTMLElement {
+				constructor() {
+					super();
+				}
+
+				connectedCallback() {
+					// Get URL parameters
+					const params = new URLSearchParams(window.location.search);
+
+					// Get values from URL parameters or fall back to defaults
+					const title = params.get("title") || "Default Title";
+					const subtitle = params.get("subtitle") || "Default Subtitle";
+					const buttonText = params.get("buttonText") || "Click Me";
+					const buttonUrl = params.get("buttonUrl") || "#";
+					const videoId = params.get("videoId") || "VIDEO_ID";
+					const backgroundImage =
+						params.get("backgroundImage") || "background-image.jpg";
+
+					this.innerHTML = `
+						<div class="hero" style="background-image: url('${backgroundImage}')">
+							<div class="container">
+								<div class="hero-content">
+									<h1>${title}</h1>
+									<p>${subtitle}</p>
+									<a href="${buttonUrl}" class="cta-button">${buttonText}</a>
+								</div>
+								<div class="video-container">
+									<div class="video-wrapper">
+										<iframe
+											src="https://www.youtube.com/embed/${videoId}"
+											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+											allowfullscreen
+										></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
+					`;
+				}
+			}
+
+			customElements.define("hero-section", HeroSection);
+		</script>
 	</body>
 </html>
