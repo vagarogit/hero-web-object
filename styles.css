@@ -1,0 +1,60 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background: url("background-image.jpg") center center/cover no-repeat;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.hero-content {
+	color: #fff;
+	max-width: 50%;
+}
+
+.cta-button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ff5722;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+
+.video-container {
+	max-width: 45%;
+}
+
+.video-container iframe {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 9;
+	border: none;
+}
+
+@media (max-width: 768px) {
+	.hero {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.hero-content,
+	.video-container {
+		max-width: 100%;
+	}
+
+	.video-container {
+		margin-top: 20px;
+	}
+}
